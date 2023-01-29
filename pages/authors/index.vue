@@ -5,14 +5,13 @@
 				rounded="lg"
 			>
 				<v-card
-					v-for="book in books"
-					:key="book.id"
+					v-for="author in authors"
+					:key="author.id"
 					width="400"
-					:title="book.name"
+					:title="author.name"
 					subtitle="This is a subtitle"
 					text="This is content"
-					@click="router.push(`/books/${book.id}`)"
-				/>
+				></v-card>
 			</v-sheet>
 		</v-col>
 	</v-row>
@@ -20,11 +19,10 @@
 
 <script setup>
 import { ref } from 'vue'
-const router = useRouter()
 
-const books = ref()
-const getBooks = async () => {
-	books.value = await http('books')
+const authors = ref()
+const getAuthors = async () => {
+	authors.value = await http('authors')
 }
-getBooks()
+getAuthors()
 </script>
