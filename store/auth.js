@@ -18,7 +18,7 @@ export const useAuthStore = defineStore({
 				body: loginForm,
 			})
 				.then(response => {
-					this.user = response
+					this.user = response.user
 					this.token = response.token
 
 					localStorage.setItem('user', JSON.stringify(this.user))
@@ -32,8 +32,8 @@ export const useAuthStore = defineStore({
 				body: loginForm,
 			})
 				.then(response => {
-					this.user = response
-					this.token = this.user.token
+					this.user = response.user
+					this.token = response.token
 
 					localStorage.setItem('user', JSON.stringify(this.user))
 					localStorage.setItem('token', JSON.stringify(this.token))

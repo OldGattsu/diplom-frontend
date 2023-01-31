@@ -7,6 +7,7 @@
 			<v-btn
 				v-for="item in menu"
 				:key="item.link"
+				:prepend-icon="item.icon"
 				text
 				@click="router.push(item.link)"
 			>
@@ -15,7 +16,12 @@
 
 			<v-spacer></v-spacer>
 
-			<v-btn @click="logout">Выйти</v-btn>
+			<v-btn
+				prepend-icon="mdi-logout"
+				@click="logout"
+			>
+				Выйти
+			</v-btn>
 		</v-container>
 	</v-app-bar>
 
@@ -38,10 +44,12 @@ const router = useRouter()
 const menu = [
 	{
 		name: 'Книги',
+		icon: 'mdi-book',
 		link: '/',
 	},
 	{
 		name: 'Авторы',
+		icon: 'mdi-account-search',
 		link: '/authors',
 	},
 ]
