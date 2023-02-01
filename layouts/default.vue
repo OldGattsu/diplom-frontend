@@ -5,17 +5,43 @@
 	>
 		<v-container class="py-0 fill-height">
 			<v-btn
-				v-for="item in menu"
-				:key="item.link"
-				:prepend-icon="item.icon"
+				prepend-icon="mdi-book"
 				text
-				@click="router.push(item.link)"
+				@click="router.push('/')"
 			>
-				{{ item.name }}
+				Книги
 			</v-btn>
+			<v-btn
+				prepend-icon="mdi-account-search"
+				text
+				@click="router.push('/authors')"
+			>
+				Авторы
+			</v-btn>
+			<template v-if="authStore.user.is_admin">
+				<v-btn
+					prepend-icon="mdi-account-supervisor"
+					text
+					@click="router.push('/users')"
+				>
+					Пользователи
+				</v-btn>
+				<v-btn
+					prepend-icon="mdi-comment-eye"
+					text
+					@click="router.push('/comments')"
+				>
+					Комментарии
+				</v-btn>
+			</template>
 
 			<v-spacer></v-spacer>
-
+			<v-avatar
+				color="primary"
+				size="small"
+			>
+				{{ authStore.user.name.substring(0,1).toUpperCase() }}
+			</v-avatar>
 			<v-btn
 				prepend-icon="mdi-logout"
 				@click="logout"
@@ -41,16 +67,4 @@ const logout = () => {
 }
 
 const router = useRouter()
-const menu = [
-	{
-		name: 'Книги',
-		icon: 'mdi-book',
-		link: '/',
-	},
-	{
-		name: 'Авторы',
-		icon: 'mdi-account-search',
-		link: '/authors',
-	},
-]
 </script>
